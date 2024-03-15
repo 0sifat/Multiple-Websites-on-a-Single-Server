@@ -32,3 +32,19 @@ DirectoryIndex index.html
 ErrorLog ${APACHE_LOG_DIR}/site1.example.com_error.log
 CustomLog ${APACHE_LOG_DIR}/site1.example.com_access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/site1.example.com.conf
+
+echo "<VirtualHost *:80>
+ServerAdmin admin@site2.example.com
+ServerName site2.example.com
+DocumentRoot /var/www/html/site2.example.com
+DirectoryIndex index.html
+ErrorLog ${APACHE_LOG_DIR}/site2.example.com_error.log
+CustomLog ${APACHE_LOG_DIR}/site2.example.com_access.log combined
+</VirtualHost>" > /etc/apache2/sites-available/site2.example.com.conf
+
+
+
+a2ensite site1.example.com
+a2ensite site2.example.com
+
+systemctl restart apache2
